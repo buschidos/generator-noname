@@ -1,12 +1,11 @@
 'use strict';
 
-var _    = require('lodash');
-var fs   = require('fs');
-var path = require('path');
+var _      = require('lodash');
+var path   = require('path');
+var mkdirp = require('mkdirp');
 
 module.exports = function () {
   var props    = this.props;
-  var tplPath  = this.templatePath();
   var destPath = this.destinationPath();
 
   props._ = {
@@ -14,6 +13,10 @@ module.exports = function () {
     camelCase: _.camelCase,
     capitalize: _.capitalize
   };
+
+  // create directories
+  mkdirp(path.join(destPath, 'app/fonts'));
+  mkdirp(path.join(destPath, 'app/img'));
 
   // dotfiles
   this.copy('gitignore', '.gitignore');
@@ -45,25 +48,24 @@ module.exports = function () {
   // image optimization task
   if (props.imagemin) {
     this.copy('gulp/tasks/imagemin.js');
-    fs.mkdir(path.join(destPath, 'app/img'));
   }
 
   // iconfont task
   if (props.sprites.indexOf('iconfont') !== -1) {
     this.bulkDirectory('gulp/tasks/iconfont', 'gulp/tasks/iconfont');
-    fs.mkdir(path.join(destPath, 'app/img/icons/iconfont'));
+    mkdirp(path.join(destPath, 'app/img/icons/iconfont'));
   }
 
   // svg sprites task
   if (props.sprites.indexOf('svg') !== -1) {
     this.bulkDirectory('gulp/tasks/sprite-svg', 'gulp/tasks/sprite-svg');
-    fs.mkdir(path.join(destPath, 'app/img/icons/svg'));
+    mkdirp(path.join(destPath, 'app/img/icons/svg'));
   }
 
   // png sprites task
   if (props.sprites.indexOf('png') !== -1) {
     this.bulkDirectory('gulp/tasks/sprite-png', 'gulp/tasks/sprite-png');
-    fs.mkdir(path.join(destPath, 'app/img/icons/png'));
+    mkdirp(path.join(destPath, 'app/img/icons/png'));
   }
 
   // js bundler task
@@ -75,13 +77,12 @@ module.exports = function () {
   this.directory('app/js', 'app/js');
   this.sprites = props.sprites; // or in /templates/app/sass/app.sass use options.sprites
   this.directory('app/sass', 'app/sass');
+
   if (props.templates === 'swig') {
     this.directory('app/templates-swig', 'app/templates');
   }
+
   if (props.templates === 'jade') {
     this.directory('app/templates-jade', 'app/templates');
   }
-
-  // create directories
-  fs.mkdir(path.join(destPath, 'app/fonts'));
 };

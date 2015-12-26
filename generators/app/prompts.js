@@ -5,7 +5,7 @@ module.exports = [
     type: 'input',
     name: 'name',
     message: 'Input project name',
-    default: 'site'
+    default: 'app'
   },
   {
     type: 'list',
@@ -35,10 +35,6 @@ module.exports = [
       {
         name: 'Browserify',
         value: 'browserify'
-      },
-      {
-        name: 'Webpack',
-        value: 'webpack'
       }
     ]
   },
@@ -48,18 +44,13 @@ module.exports = [
     message: 'Which from icon system would be used',
     choices: [
       {
-        name: 'SVG sprites using external SVG file and the <use> element (with svg4everybody)',
-        value: 'svg',
+        name: 'Iconfonts',
+        value: 'iconfont',
         checked: true
       },
       {
-        name: 'CSS inline SVG with postcss-svg plugin',
-        value: 'css-inline-svg',
-        checked: false
-      },
-      {
-        name: 'Iconfonts',
-        value: 'iconfont',
+        name: 'SVG sprites using external SVG file and the <use> element (with svg4everybody)',
+        value: 'svg',
         checked: false
       },
       {

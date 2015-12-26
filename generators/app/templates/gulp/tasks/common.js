@@ -16,7 +16,7 @@ gulp.task('build', ['clean'],  function(cb) {
         'sass',<% if (templates === 'swig') { %>
         'swig',<% } %><% if (templates === 'jade') { %>
         'jade',<% } %><% if (bundler === 'browserify') { %>
-        'browserify', <% } %>
+        'browserify',<% } %>
         'copy'
     );
     cb();
