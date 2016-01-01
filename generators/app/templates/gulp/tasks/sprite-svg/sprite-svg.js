@@ -38,7 +38,7 @@ gulp.task('sprite:svg', function() {
                 return {
                     name: name,
                     ratio: ratio,
-                    fill: fill
+                    fill: fill || initial
                 };
             }).get();
             this.push(file);
