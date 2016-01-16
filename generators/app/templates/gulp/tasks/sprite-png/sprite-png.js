@@ -1,6 +1,7 @@
 var gulp        = require('gulp');
 var plumber     = require('gulp-plumber');
 var spritesmith = require('gulp.spritesmith');
+var buffer      = require('vinyl-buffer');
 var imagemin    = require('gulp-imagemin');
 var config      = require('../../config');
 
@@ -20,10 +21,11 @@ gulp.task('sprite:png', function() {
         algorithm: 'binary-tree',
         cssTemplate: __dirname + '/sprite.scss.handlebars',
         cssVarMap: function(sprite) {
-            sprite.name = 's-' + sprite.name;
+            sprite.name = 'icon-' + sprite.name;
         }
     }));
     spriteData.img
+        .pipe(buffer())
         .pipe(imagemin({
             optimizationLevel: 3
         }))

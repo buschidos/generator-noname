@@ -26,7 +26,7 @@ gulp.task('sprite:svg', function() {
                 mergePaths: false
             }]
         }))
-        .pipe(rename({ prefix: 'svg-' }))
+        .pipe(rename({ prefix: 'icon-' }))
         .pipe(svgStore({ inlineSvg: false }))
         .pipe(through2.obj(function(file, encoding, cb) {
             var $ = file.cheerio;

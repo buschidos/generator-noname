@@ -18,13 +18,13 @@ module.exports = {
         js: 'app/js',
         img: 'app/img',
         svg: 'app/img/svg',
-        icons: 'app/img/icons',
+        icons: 'app/icons',
         // path to png sources for sprite:png task
-        iconsPng: 'app/img/icons/png',
+        iconsPng: 'app/icons',
         // path to svg sources for sprite:svg task
-        iconsSvg: 'app/img/icons/svg',
+        iconsSvg: 'app/icons',
         // path to svg sources for iconfont task
-        iconsFont: 'app/img/icons/iconfont',
+        iconsFont: 'app/icons',
         fonts: 'app/fonts',
         lib: 'app/lib'
     },

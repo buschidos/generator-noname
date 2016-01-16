@@ -22,6 +22,7 @@ var props = {
     transform: [],
     noParse: ['jquery'],
     extensions: ['.js'],
+    debug: true,
     cache: {},
     packageCache: {}
 };
