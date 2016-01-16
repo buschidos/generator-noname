@@ -1,5 +1,5 @@
 var gulp        = require('gulp');
-var browserSync = require('browser-sync');
+var browserSync = require('browser-sync').create('dev-server');
 var util        = require('gulp-util');
 var config      = require('../config');
 
@@ -7,7 +7,7 @@ var config      = require('../config');
 // in CL 'gulp server --tunnel siteName' to make project available over http://siteName.localtunnel.me
 
 gulp.task('server', function() {
-    browserSync({
+    browserSync.init({
         server: {
             baseDir: !config.production ? [config.dest.root, config.src.root] : config.dest.root,
             directory: false

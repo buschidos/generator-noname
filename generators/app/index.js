@@ -16,6 +16,7 @@ module.exports = yeoman.generators.Base.extend({
     ));
 
     this.prompt(prompts, function (props) {
+      console.log(props);
       this.props = props;
       done();
     }.bind(this));

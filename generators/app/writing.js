@@ -1,11 +1,11 @@
 'use strict';
 
-var _      = require('lodash');
-var path   = require('path');
+var _ = require('lodash');
+var path = require('path');
 var mkdirp = require('mkdirp');
 
 module.exports = function () {
-  var props    = this.props;
+  var props = this.props;
   var destPath = this.destinationPath();
 
   props._ = {
@@ -15,8 +15,8 @@ module.exports = function () {
   };
 
   // create directories
-  mkdirp(path.join(destPath, 'app/fonts'));
-  mkdirp(path.join(destPath, 'app/img'));
+  mkdirp(path.join(destPath, 'src/fonts'));
+  mkdirp(path.join(destPath, 'src/img'));
 
   // dotfiles
   this.copy('gitignore', '.gitignore');
@@ -29,9 +29,11 @@ module.exports = function () {
   this.bulkDirectory('gulp/util', 'gulp/util');
 
   // common tasks
-  this.template('gulp/tasks/common.js', props);
+  this.template('gulp/tasks/default.js');
+  this.template('gulp/tasks/build.js', props);
+  this.template('gulp/tasks/watch.js', props);
+  this.template('gulp/tasks/copy.js', props);
   this.copy('gulp/tasks/clean.js');
-  this.copy('gulp/tasks/copy.js');
   this.copy('gulp/tasks/server.js');
   this.copy('gulp/tasks/sass.js');
 
@@ -50,22 +52,23 @@ module.exports = function () {
     this.copy('gulp/tasks/imagemin.js');
   }
 
+  if (props.sprites.length) {
+    this.directory('src/icons', 'src/icons');
+  }
+
   // iconfont task
   if (props.sprites.indexOf('iconfont') !== -1) {
     this.bulkDirectory('gulp/tasks/iconfont', 'gulp/tasks/iconfont');
-    mkdirp(path.join(destPath, 'app/img/icons/iconfont'));
   }
 
   // svg sprites task
   if (props.sprites.indexOf('svg') !== -1) {
     this.bulkDirectory('gulp/tasks/sprite-svg', 'gulp/tasks/sprite-svg');
-    mkdirp(path.join(destPath, 'app/img/icons/svg'));
   }
 
   // png sprites task
   if (props.sprites.indexOf('png') !== -1) {
     this.bulkDirectory('gulp/tasks/sprite-png', 'gulp/tasks/sprite-png');
-    mkdirp(path.join(destPath, 'app/img/icons/png'));
   }
 
   // js bundler task
@@ -74,15 +77,15 @@ module.exports = function () {
   }
 
   // copy directories
-  this.directory('app/js', 'app/js');
-  this.sprites = props.sprites; // or in /templates/app/sass/app.sass use options.sprites
-  this.directory('app/sass', 'app/sass');
+  this.directory('src/js', 'src/js');
+  this.sprites = props.sprites; // or in /templates/src/sass/app.sass use options.sprites
+  this.directory('src/sass', 'src/sass');
 
   if (props.templates === 'swig') {
-    this.directory('app/templates-swig', 'app/templates');
+    this.directory('src/templates-swig', 'src/templates');
   }
 
   if (props.templates === 'jade') {
-    this.directory('app/templates-jade', 'app/templates');
+    this.directory('src/templates-jade', 'src/templates');
   }
 };

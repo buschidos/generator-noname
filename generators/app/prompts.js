@@ -35,6 +35,10 @@ module.exports = [
       {
         name: 'Browserify',
         value: 'browserify'
+      },
+      {
+        name: 'Webpack',
+        value: 'webpack'
       }
     ]
   },

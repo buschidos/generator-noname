@@ -1,7 +1,7 @@
 var util = require('gulp-util');
 
 var production = util.env.production || util.env.prod || false;
-var destPath = production ? 'dist' : '_tmp';
+var destPath = 'dist';
 
 module.exports = {
     // environment (by default development)
@@ -9,24 +9,24 @@ module.exports = {
 
     // paths
     src: {
-        root: 'app',
-        templates: 'app/templates',
-        templatesData: 'app/templates/data',
-        sass: 'app/sass',
+        root: 'src',
+        templates: 'src/templates',
+        templatesData: 'src/templates/data',
+        sass: 'src/sass',
         // path for sass files that will be generated automatically via some of tasks
-        sassGen: 'app/sass/generated',
-        js: 'app/js',
-        img: 'app/img',
-        svg: 'app/img/svg',
-        icons: 'app/icons',
+        sassGen: 'src/sass/generated',
+        js: 'src/js',
+        img: 'src/img',
+        svg: 'src/img/svg',
+        icons: 'src/icons',
         // path to png sources for sprite:png task
-        iconsPng: 'app/icons',
+        iconsPng: 'src/icons',
         // path to svg sources for sprite:svg task
-        iconsSvg: 'app/icons',
+        iconsSvg: 'src/icons',
         // path to svg sources for iconfont task
-        iconsFont: 'app/icons',
-        fonts: 'app/fonts',
-        lib: 'app/lib'
+        iconsFont: 'src/icons',
+        fonts: 'src/fonts',
+        lib: 'src/lib'
     },
     dest: {
         root: destPath,

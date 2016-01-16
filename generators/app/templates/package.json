@@ -35,13 +35,13 @@
     "gulp-changed": "^1.3.0",<% } %><% if (templates) { %>
     "gulp-changed": "^1.3.0",
     "gulp-front-matter": "^1.3.0",
-    "gulp-prettify": "^0.3.0",<% } %><% if (templates === 'swig') { %>
+    "gulp-prettify": "^0.4.0",<% } %><% if (templates === 'swig') { %>
     "gulp-swig": "^0.8.0",<% } %><% if (templates === 'jade') { %>
     "gulp-jade": "^1.1.0",<% } %><% if (bundler === 'browserify') { %>
-    "browserify": "^12.0.1",
+    "browserify": "^13.0.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.6.1",<% } %>
-    "lodash": "^3.10.1"
+    "lodash": "^4.0.0"
   }
 }
