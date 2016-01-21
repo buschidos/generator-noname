@@ -20,9 +20,9 @@ gulp.task('copy:rootfiles', function() {
 });<% if (!imagemin) { %>
 
 gulp.task('copy:img', function() {
-  return gulp
-    .src(config.src.img + '/**/*.{jpg,png,jpeg,svg,gif}')
-    .pipe(gulp.dest(config.dest.img));
+    return gulp
+        .src(config.src.img + '/**/*.{jpg,png,jpeg,svg,gif}')
+        .pipe(gulp.dest(config.dest.img));
 });<% } %>
 
 gulp.task('copy', [<% if (!imagemin) { %>
