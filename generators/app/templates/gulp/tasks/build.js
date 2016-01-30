@@ -9,11 +9,14 @@ function build(prod) {
         'iconfont',<% } %><% if (sprites.indexOf('svg') !== -1) { %>
         'sprite:svg',<% } %><% if (sprites.indexOf('png') !== -1) { %>
         'sprite:png',<% } %><% if (imagemin) { %>
-        'imagemin',<% } %>
+        'imagemin',<% } %><% if (svgo) { %>
+        'svgo',<% } %>
         'sass',<% if (templates === 'swig') { %>
         'swig',<% } %><% if (templates === 'jade') { %>
-        'jade',<% } %><% if (bundler === 'browserify') { %>
-        'browserify',<% } %>
+        'jade',<% } %><% if (templates === 'nunjucks') { %>
+        'nunjucks',<% } %><% if (bundler === 'browserify') { %>
+        'browserify',<% } %><% if (bundler === 'webpack') { %>
+        'webpack:watch',<% } %>
         'copy'
     );
 }

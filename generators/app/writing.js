@@ -39,6 +39,9 @@ module.exports = function () {
 
   // compile templates tasks
   switch (props.templates) {
+    case 'nunjucks':
+      this.copy('gulp/tasks/nunjucks.js');
+      break;
     case 'swig':
       this.copy('gulp/tasks/swig.js');
       break;
@@ -50,6 +53,10 @@ module.exports = function () {
   // image optimization task
   if (props.imagemin) {
     this.copy('gulp/tasks/imagemin.js');
+  }
+
+  if (props.svgo) {
+    this.copy('gulp/tasks/svgo.js');
   }
 
   if (props.sprites.length) {
@@ -76,16 +83,26 @@ module.exports = function () {
     this.copy('gulp/tasks/browserify.js');
   }
 
+  if (props.bundler === 'webpack') {
+    this.copy('gulp/tasks/webpack.js');
+    this.copy('webpack.config.js');
+    this.copy('babelrc', '.babelrc');
+  }
+
   // copy directories
   this.directory('src/js', 'src/js');
   this.sprites = props.sprites; // or in /templates/src/sass/app.sass use options.sprites
   this.directory('src/sass', 'src/sass');
 
-  if (props.templates === 'swig') {
-    this.directory('src/templates-swig', 'src/templates');
-  }
-
-  if (props.templates === 'jade') {
-    this.directory('src/templates-jade', 'src/templates');
+  switch (props.templates) {
+    case 'nunjucks':
+      this.directory('src/templates-nunjucks', 'src/templates');
+      break;
+    case 'swig':
+      this.directory('src/templates-swig', 'src/templates');
+      break;
+    case 'jade':
+      this.directory('src/templates-jade', 'src/templates');
+      break;
   }
 };

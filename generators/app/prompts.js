@@ -13,11 +13,15 @@ module.exports = [
     message: 'Choose template language',
     choices: [
       {
-        name: 'Swig templates',
+        name: 'Nunjucks',
+        value: 'nunjucks'
+      },
+      {
+        name: 'Swig',
         value: 'swig'
       },
       {
-        name: 'Jade templates',
+        name: 'Jade',
         value: 'jade'
       },
       {
@@ -33,12 +37,12 @@ module.exports = [
     message: 'Choose js modules bundler',
     choices: [
       {
-        name: 'Browserify',
-        value: 'browserify'
-      },
-      {
         name: 'Webpack',
         value: 'webpack'
+      },
+      {
+        name: 'Browserify',
+        value: 'browserify'
       }
     ]
   },
@@ -68,6 +72,12 @@ module.exports = [
     type: 'confirm',
     name: 'imagemin',
     message: 'Use image optimization?',
+    default: false
+  },
+  {
+    type: 'confirm',
+    name: 'svgo',
+    message: 'Use SVGO for svg optimization?',
     default: true
   },
   {
