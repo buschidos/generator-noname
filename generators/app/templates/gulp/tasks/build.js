@@ -16,7 +16,7 @@ function build(prod) {
         'jade',<% } %><% if (templates === 'nunjucks') { %>
         'nunjucks',<% } %><% if (bundler === 'browserify') { %>
         'browserify',<% } %><% if (bundler === 'webpack') { %>
-        'webpack:watch',<% } %>
+        'webpack',<% } %>
         'copy'
     );
 }
