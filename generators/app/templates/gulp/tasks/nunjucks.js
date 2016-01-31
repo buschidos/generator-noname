@@ -7,15 +7,15 @@ var prettify       = require('gulp-prettify');
 var frontMatter    = require('gulp-front-matter');
 var config         = require('../config');
 
-nunjucksRender.nunjucks.configure([
-    config.src.templates
-], {
-    watch: false,
-    trimBlocks: true,
-    lstripBlocks: false
-});
-
 function renderHtml(onlyChanged) {
+    nunjucksRender.nunjucks.configure([
+        config.src.templates
+    ], {
+        watch: false,
+        trimBlocks: true,
+        lstripBlocks: false
+    });
+
     return gulp
         .src([config.src.templates + '/**/[^_]*.html'])
         .pipe(plumber({
