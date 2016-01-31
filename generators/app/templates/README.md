@@ -1,51 +1,71 @@
-## This project use Gulp
+#README
 
 Clone this repo and then in command line type:
 
 * `npm install` - install all needed dependencies
-* `gulp build` - initial build (compile all sources for first time)
-* `gulp` - run dev-server and start watching source files
-
-### Project structure
-
-	./_tmp/
-		# dev folder with compiled project files
-	./app/
-		js/
-			app.js
-		sass/
-			helpers/
-			app.sass
-		templates/
-			data/
+* `gulp` - run dev-server and start watching source files or
+* `gulp build` - build project
 			
-	./dist/
-		# projects production version
-			
+--
 
-## Gulp Tasks
+## List of Gulp tasks
 
-* `gulp default` or simply `gulp` - will start all tasks that needed to work with project in dev mode
-* `gulp sass` - compile .sass to .css
-* `gulp browserify` - compile .js sources into bundle file
-* `gulp copy` - copy common files from app path to dist path
-* `gulp swig` - compile [swig](http://paularmstrong.github.io/swig/)  templates
-* `gulp jade` - compile [jade](http://jade-lang.com/) templates
-* `gulp imagemin` - images optimization
-* `gulp server` - run dev-server powered by [BrowserSync](https://www.browsersync.io/)
-* `gulp clean` - remove folder with compiled files
+To run separate task in command line type `gulp [task_name]`. 
+Almost all tasks also have watch mode `gulp [task_name]:watch` but you don't nedd to use it directly.
 
-## DEV and PRODUCTION mode
+### Main tasks
+Task name          | Description                                                      
+:------------------|:----------------------------------
+`default`          | will start all tasks that needed to work with project in dev mode: initial build, watch files, run server with livereload
+`build:dev`        | build dev version of project (without code optimizations)
+`build`            | build production ready project (with code optimizations) 
 
-To switch between modes use flags `--prod` or `--production`. By default mode set as *development*.
+### Other tasks
+Task name          | Description                                                      
+:------------------|:----------------------------------
+`sass` 	         | compile .sass/.scss to .css. We also use [postcss](https://github.com/postcss/postcss) for [autoprefixer](https://github.com/postcss/autoprefixer), so feel free to include other awesome postcss [plugins](https://github.com/postcss/postcss#plugins) when needed
+`browserify`       | compile .js sources into bundle file
+`webpack`          | compile .js sources into bundle file
+`copy`             | copy common files from `./src` path to `./dist` path
+`swig`             | compile [swig](http://paularmstrong.github.io/swig/)  templates
+`nunjucks`         | compile Mozilla's awesome [nunjucks](https://mozilla.github.io/nunjucks/) templates
+`jade`             | compile [jade](http://jade-lang.com/) templates
+`imagemin`         | images optimization
+`svgo`             | optimize svg files from `./src/img/svgo` folder with [svgo](https://github.com/svg/svgo)
+`iconfont`         | compile iconfonts from svg sources
+`sprite:svg`       | create svg symbol sprites ([css-tricks](https://css-tricks.com/svg-sprites-use-better-icon-fonts/))
+`sprite:png`       | create png sprites
+`server`           | run dev-server powered by [BrowserSync](https://www.browsersync.io/)
+`clean`            | remove `./dist` folder
 
-*Usage*: `gulp build --prod` or `gulp build --production`.
+ 
+ 
 
-You can use this flags with any other task, not only with `gulp build`.
-For example, `gulp server --prod` will start serving files from `./dist` folder instead of `./_tmp`.
+<!--* `default` - will start all tasks that needed to work with project in dev mode
+* `build:dev` - build dev version of project (without code optimizations)
+* `build` - build production ready project (with code optimizations)
+* `watch` - run all needed for dev task in watch mode
+* `sass` - compile .sass/.scss to .css. We also use [postcss](https://github.com/postcss/postcss) for [autoprefixer](https://github.com/postcss/autoprefixer), so feel free to include other awesome postcss [plugins](https://github.com/postcss/postcss#plugins) when needed
+* `browserify` - compile .js sources into bundle file
+* `webpack` - compile .js sources into bundle file
+* `copy` - copy common files from `./src` path to `./dist` path
+* `swig` - compile [swig](http://paularmstrong.github.io/swig/)  templates
+* `nunjucks` - compile Mozilla's awesome [nunjucks](https://mozilla.github.io/nunjucks/)  templates
+* `jade` - compile [jade](http://jade-lang.com/) templates
+* `imagemin` - images optimization
+* `svgo` - optimize svg files from `./src/img/svgo` folder with [svgo](https://github.com/svg/svgo)
+* `iconfont` - compile iconfonts from svg sources
+* `sprite:svg` - 
+* `server` - run dev-server powered by [BrowserSync](https://www.browsersync.io/)
+* `clean` - remove `./dist` folder-->
 
-**Main difference** between modes is what folder we will use as destination for compiled files. For **DEV** we use `./_tmp` folder, for **PRODUCTION** - `./dist`.
+## Flags
 
-Keep in mind, that `./_tmp` folder set as **ignored** in `.gitignore`.
+We have several useful flags.
 
-Also in **PRODUCTION** mode JS will be minified with UglifyJS, and SASS will be compiled in _compact_ style, instead of _expanded_.
+* `gulp --open` or `gulp server --open` - run dev server and open preview in current default browser
+* `gulp --tunnel=[name]` or `gulp server --tunnel=[name]` - run dev server and allows you to easily share a web service on your local development machine (powered by [localtunnel.me](https://localtunnel.me/)). After this command your local site will be avaiable over `[name].localtunnel.me` link.
+* `gulp [task_name] --prod` or `gulp [task_name] --production` - run task in production mode. Some tasks (for compiling css or js) have additional optimization for production mode (such as code minification), so with this flag you can force enable production mode. `gulp build` use this by default.
+
+##Other
+Use `npm run ghpages` to push only `./dist` folder to **gh-pages** branch on github.
