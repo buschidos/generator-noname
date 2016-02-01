@@ -1,7 +1,7 @@
 {
   "name": "<%= _.kebabCase(name) %>",
   "scripts": {
-    "distpush": "git subtree push --prefix dist origin gh-pages"
+    "ghpages": "git subtree push --prefix dist origin gh-pages"
   },
   "author": "buschidos || coderiver",
   "devDependencies": {
