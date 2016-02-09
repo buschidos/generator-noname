@@ -2,7 +2,7 @@ var gulp        = require('gulp');
 var runSequence = require('run-sequence');
 var config      = require('../config');
 
-function build(prod) {
+function build(prod, cb) {
     if (prod) config.production = true;
     runSequence(
         'clean',<% if (sprites.indexOf('iconfont') !== -1) { %>
@@ -17,16 +17,15 @@ function build(prod) {
         'nunjucks',<% } %><% if (bundler === 'browserify') { %>
         'browserify',<% } %><% if (bundler === 'webpack') { %>
         'webpack',<% } %>
-        'copy'
+        'copy',
+        cb
     );
 }
 
 gulp.task('build', function(cb) {
-    build(true);
-    cb();
+    build(cb, true);
 });
 
 gulp.task('build:dev', function(cb) {
-    build();
-    cb();
+    build(cb);
 });
