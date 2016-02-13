@@ -1,13 +1,13 @@
-# generator-buschidos [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> 
+# generator-noname [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+>
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-buschidos using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io) and generator-noname using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
 npm install -g yo
-npm install -g generator-buschidos
+npm install -g generator-noname
 ```
 
 Then generate your new project:
@@ -25,9 +25,9 @@ Yeoman has a heart of gold. He&#39;s a person with feelings and opinions, but he
  © [buschidos]()
 
 
-[npm-image]: https://badge.fury.io/js/generator-buschidos.svg
-[npm-url]: https://npmjs.org/package/generator-buschidos
-[travis-image]: https://travis-ci.org/buschidos/generator-buschidos.svg?branch=master
-[travis-url]: https://travis-ci.org/buschidos/generator-buschidos
-[daviddm-image]: https://david-dm.org/buschidos/generator-buschidos.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/buschidos/generator-buschidos
+[npm-image]: https://badge.fury.io/js/generator-noname.svg
+[npm-url]: https://npmjs.org/package/generator-noname
+[travis-image]: https://travis-ci.org/buschidos/generator-noname.svg?branch=master
+[travis-url]: https://travis-ci.org/buschidos/generator-noname
+[daviddm-image]: https://david-dm.org/buschidos/generator-noname.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/buschidos/generator-noname
