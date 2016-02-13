@@ -13,7 +13,7 @@ npm install -g generator-noname
 Then generate your new project:
 
 ```bash
-yo buschidos
+yo noname
 ```
 
 ## Getting To Know Yeoman
