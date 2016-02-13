@@ -1,9 +1,12 @@
 {
   "name": "<%= _.kebabCase(name) %>",
+  "version": "1.0.0",
   "scripts": {
-    "ghpages": "git subtree push --prefix dist origin gh-pages"
+    "ghpages": "git subtree push --prefix dist origin gh-pages",
+    "build": "gulp build --production",
+    "start": "gulp"
   },
-  "author": "buschidos || coderiver",
+  "authors": "buschidos <sergey.snjozyk@gmail.com>",
   "devDependencies": {
     "autoprefixer": "^6.1.2",
     "browser-sync": "^2.10.0",

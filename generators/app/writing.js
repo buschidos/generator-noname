@@ -21,6 +21,7 @@ module.exports = function () {
   // dotfiles
   this.copy('gitignore', '.gitignore');
   this.copy('editorconfig', '.editorconfig');
+  this.copy('eslintrc', '.eslintrc');
   this.copy('gulpfile.js');
   this.template('package.json', props);
 
@@ -36,6 +37,7 @@ module.exports = function () {
   this.copy('gulp/tasks/clean.js');
   this.copy('gulp/tasks/server.js');
   this.copy('gulp/tasks/sass.js');
+  this.bulkDirectory('gulp/tasks/index-page', 'gulp/tasks/index-page');
 
   // compile templates tasks
   switch (props.templates) {
@@ -57,6 +59,7 @@ module.exports = function () {
 
   if (props.svgo) {
     this.copy('gulp/tasks/svgo.js');
+    this.directory('src/img/svgo', 'src/img/svgo');
   }
 
   if (props.sprites.length) {

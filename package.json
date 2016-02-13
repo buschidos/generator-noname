@@ -1,12 +1,12 @@
 {
-  "name": "generator-buschidos",
-  "version": "0.0.0",
+  "name": "generator-noname",
+  "version": "1.0.0",
   "description": "",
   "homepage": "",
   "author": {
     "name": "buschidos",
     "email": "sergey.snjozyk@gmail.com",
-    "url": ""
+    "url": "https://github.com/buschidos"
   },
   "files": [
     "generators"
@@ -30,7 +30,7 @@
     "gulp-plumber": "^1.0.0",
     "yeoman-assert": "^2.0.0"
   },
-  "repository": "buschidos/generator-buschidos",
+  "repository": "https://github.com/buschidos/generator-noname.git",
   "scripts": {
     "prepublish": "gulp prepublish",
     "test": "gulp"

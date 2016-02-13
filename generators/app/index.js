@@ -12,11 +12,10 @@ module.exports = yeoman.generators.Base.extend({
     var done = this.async();
 
     this.log(yosay(
-      'Welcome to the first-rate ' + chalk.red('generator-buschidos') + ' generator!'
+      'Welcome to the first-rate ' + chalk.red('generator-noname') + ' generator!'
     ));
 
     this.prompt(prompts, function (props) {
-      console.log(props);
       this.props = props;
       done();
     }.bind(this));
