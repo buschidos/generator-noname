@@ -39,7 +39,7 @@ Task name          | Description
 `clean`            | remove `./dist` folder
 `index-page`       | create index file with links to all project pages
 
-_This is a full list of tasks, that we may use in other our projects, but not all of them may be available in current project. For example, from [`jade`, `nunjucks`, `swig`] we usually use only one template language. Or if project use `webpack`, then `browserify` is not needed at all, and conversely. All available tasks are placed in a folder `./gulp/tasks` as separate *.js files. Usually, file name = task name._
+_This is a full list of tasks, that we may use in other our projects, but not all of them should be available in current project. For example, from [`jade`, `nunjucks`, `swig`] we usually use only one template language. Or if project use `webpack`, then `browserify` is not needed at all, and conversely. All available tasks are placed in a folder `./gulp/tasks` as separate *.js files. Usually, file name = task name._
 
 
 ## Flags

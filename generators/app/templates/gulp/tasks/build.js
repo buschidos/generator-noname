@@ -2,8 +2,7 @@ var gulp        = require('gulp');
 var runSequence = require('run-sequence');
 var config      = require('../config');
 
-function build(prod, cb) {
-    if (prod) config.production = true;
+function build(cb) {
     runSequence(
         'clean',<% if (sprites.indexOf('iconfont') !== -1) { %>
         'iconfont',<% } %><% if (sprites.indexOf('svg') !== -1) { %>
@@ -23,9 +22,13 @@ function build(prod, cb) {
 }
 
 gulp.task('build', function(cb) {
-    build(cb, true);
+    config.setEnv('production');
+    config.logEnv();
+    build(cb);
 });
 
 gulp.task('build:dev', function(cb) {
+    config.setEnv('development');
+    config.logEnv();
     build(cb);
 });

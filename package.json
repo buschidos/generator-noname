@@ -1,7 +1,7 @@
 {
   "name": "generator-noname",
   "version": "1.0.1",
-  "description": "",
+  "description": "Gulp-based Yeoman generator for new project",
   "homepage": "",
   "author": {
     "name": "buschidos",
