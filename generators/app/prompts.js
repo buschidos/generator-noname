@@ -10,7 +10,7 @@ module.exports = [
   {
     type: 'list',
     name: 'templates',
-    message: 'Choose template language',
+    message: 'Choose template engine',
     choices: [
       {
         name: 'Nunjucks',
@@ -40,9 +40,13 @@ module.exports = [
         name: 'Webpack',
         value: 'webpack'
       },
+      // {
+      //   name: 'Browserify',
+      //   value: 'browserify'
+      // },
       {
-        name: 'Browserify',
-        value: 'browserify'
+        name: 'Not use modules bundler',
+        value: null
       }
     ]
   },
@@ -52,13 +56,13 @@ module.exports = [
     message: 'Which from icon system would be used',
     choices: [
       {
-        name: 'Iconfonts',
-        value: 'iconfont',
+        name: 'SVG sprites using external SVG file and the <use> element',
+        value: 'svg',
         checked: true
       },
       {
-        name: 'SVG sprites using external SVG file and the <use> element (with svg4everybody)',
-        value: 'svg',
+        name: 'Iconfonts',
+        value: 'iconfont',
         checked: false
       },
       {
