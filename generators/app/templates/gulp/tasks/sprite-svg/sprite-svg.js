@@ -60,6 +60,7 @@ gulp.task('sprite:svg', function() {
         .pipe(cheerio({
             run: function($, file) {
                 $('[fill]:not([fill="currentColor"])').removeAttr('fill');
+                $('[stroke]').removeAttr('stroke');
             },
             parserOptions: { xmlMode: true }
         }))
