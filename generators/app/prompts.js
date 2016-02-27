@@ -56,7 +56,7 @@ module.exports = [
     message: 'Which from icon system would be used',
     choices: [
       {
-        name: 'SVG sprites using external SVG file and the <use> element',
+        name: 'SVG sprites',
         value: 'svg',
         checked: true
       },
@@ -71,12 +71,6 @@ module.exports = [
         checked: false
       }
     ]
-  },
-  {
-    type: 'confirm',
-    name: 'imagemin',
-    message: 'Use image optimization?',
-    default: false
   },
   {
     type: 'confirm',

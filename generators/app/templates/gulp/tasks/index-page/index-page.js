@@ -7,7 +7,7 @@ var allowExt    = ['.html', '.jade'];
 
 gulp.task('index-page', function() {
     var fullList = fs.readdirSync(config.src.templates);
-    var pages = fullList.reduce((acc, val) => {
+    var pages = fullList.reduce(function(acc, val) {
         var parsed = path.parse(val);
         var name = parsed.name;
         var ext = parsed.ext;
