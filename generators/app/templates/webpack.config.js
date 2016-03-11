@@ -1,7 +1,7 @@
-var webpack    = require('webpack');
-var path       = require('path');
-var util       = require('gulp-util');
-var config     = require('./gulp/config');
+var webpack = require('webpack');
+var path    = require('path');
+var util    = require('gulp-util');
+var config  = require('./gulp/config');
 
 function createConfig(env) {
     var isProduction, webpackConfig;
@@ -51,6 +51,7 @@ function createConfig(env) {
     if (isProduction) {
         webpackConfig.plugins.push(
             new webpack.optimize.DedupePlugin(),
+            new webpack.optimize.OccurenceOrderPlugin(),
             new webpack.optimize.UglifyJsPlugin({
                 compress: {
                     warnings: false
