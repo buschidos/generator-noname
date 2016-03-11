@@ -24,7 +24,6 @@ Task name          | Description
 Task name          | Description                                                      
 :------------------|:----------------------------------
 `sass` 	         | compile .sass/.scss to .css. We also use [postcss](https://github.com/postcss/postcss) for [autoprefixer](https://github.com/postcss/autoprefixer), so feel free to include other awesome postcss [plugins](https://github.com/postcss/postcss#plugins) when needed
-`browserify`       | compile .js sources into bundle file
 `webpack`          | compile .js sources into bundle file
 `copy`             | copy common files from `./src` path to `./dist` path
 `swig`             | compile [swig](http://paularmstrong.github.io/swig/)  templates
@@ -38,7 +37,7 @@ Task name          | Description
 `clean`            | remove `./dist` folder
 `index-page`       | create index file with links to all project pages
 
-_This is a full list of tasks, that we use in our projects, but not all of them should be available in current project. For example, we only use one template engine out of these three [`jade`, `nunjucks`, `swig`]. Or if project uses `webpack`, then `browserify` is not needed at all, and vise versa. All available tasks are placed in a folder `./gulp/tasks` as separate *.js files. Usually, file name = task name._
+_This is a full list of tasks, that we use in our projects, but not all of them should be available in current project. For example, we only use one template engine out of these three [`jade`, `nunjucks`, `swig`]. All available tasks are placed in a folder `./gulp/tasks` as separate *.js files. Usually, file name = task name._
 
 
 ## Flags

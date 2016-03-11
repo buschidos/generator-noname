@@ -25,7 +25,7 @@
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.5",<% if (sprites.indexOf('iconfont') !== -1) { %>
     "gulp-svgmin": "^1.2.0",
-    "gulp-iconfont": "^5.0.1",
+    "gulp-iconfont": "^6.0.0",
     "gulp-consolidate": "^0.1.2",<% } %><% if (sprites.indexOf('png') !== -1) { %>
     "gulp.spritesmith": "^6.0.0",
     "gulp-imagemin": "^2.4.0",<% } %><% if (sprites.indexOf('svg') !== -1) { %>
@@ -38,7 +38,7 @@
     "gulp-changed": "^1.3.0",
     "gulp-front-matter": "^1.3.0",
     "gulp-prettify": "^0.4.0",<% } %><% if (templates === 'nunjucks')  { %>
-    "gulp-nunjucks-render": "^1.1.0",<% } %><% if (templates === 'swig') { %>
+    "gulp-nunjucks-render": "^2.0.0",<% } %><% if (templates === 'swig') { %>
     "gulp-swig": "^0.8.0",<% } %><% if (templates === 'jade') { %>
     "gulp-jade": "^1.1.0",<% } %><% if (bundler === 'browserify') { %>
     "browserify": "^13.0.0",
