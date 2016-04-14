@@ -1,6 +1,8 @@
-<% _.each(symbols, function(symbol) { %>.<%= symbol.name %> {
-  width: <%= symbol.ratio %>em;
+.icon {
+    fill: currentColor;
+}
+<% _.each(icons, function(icon) { %>.<%= icon.name %> {
+  width: <%= icon.ratio %>em;
   height: 1em;
-  fill: <%= symbol.fill %>;
 }
 <% }); %>

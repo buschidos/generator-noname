@@ -31,7 +31,7 @@ gulp.task('iconfont', function() {
                 .pipe(consolidate('lodash', props))
                 .pipe(gulp.dest(config.src.sassGen));
             // generate icons preview in development mode
-            gulp.src(__dirname + '/iconfont.html')
+            gulp.src(__dirname + '/iconfont-preview.html')
                 .pipe(consolidate('lodash', props))
                 .pipe(gulp.dest(config.src.root));
         })

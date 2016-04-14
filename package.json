@@ -4,8 +4,8 @@
   "description": "Gulp-based Yeoman generator for new project",
   "homepage": "",
   "author": {
-    "name": "buschidos",
-    "email": "sergey.snjozyk@gmail.com",
+    "name": "Sergey Snozyk",
+    "email": "sergey.snozyk@gmail.com",
     "url": "https://github.com/buschidos"
   },
   "files": [

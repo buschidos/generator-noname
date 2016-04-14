@@ -4,13 +4,14 @@ var svgmin      = require('gulp-svgmin');
 var svgStore    = require('gulp-svgstore');
 var rename      = require('gulp-rename');
 var cheerio     = require('gulp-cheerio');
-var through2    = require('through2');
 var consolidate = require('gulp-consolidate');
 var config      = require('../../config');
 
+var pathToIcons = config.src.iconsSvg + '/**/*.svg';
+
 gulp.task('sprite:svg', function() {
     return gulp
-        .src(config.src.iconsSvg + '/*.svg')
+        .src(pathToIcons)
         .pipe(plumber({
             errorHandler: config.errorHandler
         }))
@@ -28,40 +29,8 @@ gulp.task('sprite:svg', function() {
         }))
         .pipe(rename({ prefix: 'icon-' }))
         .pipe(svgStore({ inlineSvg: false }))
-        .pipe(through2.obj(function(file, encoding, cb) {
-            var $ = file.cheerio;
-            var data = $('svg > symbol').map(function() {
-                var $this  = $(this);
-                var size   = $this.attr('viewBox').split(' ').splice(2);
-                var name   = $this.attr('id');
-                var ratio  = size[0] / size[1]; // symbol width / symbol height
-                var fill   = $this.find('[fill]:not([fill="currentColor"])').attr('fill');
-                var stroke = $this.find('[stroke]').attr('stroke');
-                return {
-                    name: name,
-                    ratio: +ratio.toFixed(2),
-                    fill: fill || 'initial',
-                    stroke: stroke || 'initial'
-                };
-            }).get();
-            this.push(file);
-            gulp.src(__dirname + '/_sprite-svg.scss')
-                .pipe(consolidate('lodash', {
-                    symbols: data
-                }))
-                .pipe(gulp.dest(config.src.sassGen));
-            gulp.src(__dirname + '/sprite.html')
-                .pipe(consolidate('lodash', {
-                    symbols: data
-                }))
-                .pipe(gulp.dest(config.src.root));
-            cb();
-        }))
         .pipe(cheerio({
-            run: function($, file) {
-                $('[fill]:not([fill="currentColor"])').removeAttr('fill');
-                $('[stroke]').removeAttr('stroke');
-            },
+            run: extractDataFromIcons,
             parserOptions: { xmlMode: true }
         }))
         .pipe(rename({ basename: 'sprite' }))
@@ -69,5 +38,42 @@ gulp.task('sprite:svg', function() {
 });
 
 gulp.task('sprite:svg:watch', function() {
-    gulp.watch(config.src.iconsSvg + '/*.svg', ['sprite:svg']);
+    gulp.watch(pathToIcons, ['sprite:svg']);
 });
+
+function extractDataFromIcons($, file) {
+    // get data about each icon
+    var symbols = $('svg > symbol');
+    var data = $('svg > symbol').map(function() {
+        var $this = $(this);
+        var size = $this.attr('viewBox').split(' ').splice(2);
+        return {
+            name: $this.attr('id'),
+            ratio: Math.ceil((size[0] / size[1]) * 10) / 10
+        };
+    }).get();
+
+    // remove attributes to make possible applying these styles via css
+    symbols.each(function() {
+        $(this)
+            .children()
+            .removeAttr('stroke')
+            .removeAttr('stroke-width')
+            .not('[fill="currentColor"]')
+            .removeAttr('fill')
+    });
+
+    // create scss file with icon dimensions
+    gulp.src(__dirname + '/_sprite-svg.scss')
+        .pipe(consolidate('lodash', {
+            icons: data
+        }))
+        .pipe(gulp.dest(config.src.sassGen));
+
+    // crate preview
+    gulp.src(__dirname + '/sprite-preview.html')
+        .pipe(consolidate('lodash', {
+            icons: data
+        }))
+        .pipe(gulp.dest(config.src.root));
+}

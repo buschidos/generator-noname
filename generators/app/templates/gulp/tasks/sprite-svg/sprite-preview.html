@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Iconfont Preview</title>
+  <title>SVG Sprite Preview</title>
   <style type="text/css" media="all">
 
     h1 {
@@ -39,7 +39,7 @@
       box-shadow: inset 0 0 3px 0 rgba(0, 0, 0, 0.2);
     }
 
-    input:not([type=range]) {
+    input:not([type=range]):not([type=color]) {
       display: inline-block;
       vertical-align: top;
       width: 100%;
@@ -54,11 +54,22 @@
       -webkit-appearance: none;
     }
 
-    input[type=range] {
+    .configure {
+      display: flex;
+      flex-direction: column;
+      max-width: 300px;
+      margin: auto;
+    }
+
+    .configure label:first-child input {
       display: block;
       width: 100%;
-      max-width: 500px;
-      margin: auto;
+    }
+
+    .configure label:last-child {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
     }
 
     .icon-class-name {
@@ -69,13 +80,9 @@
       width: 30%;
     }
 
-    <% _.forEach(symbols, function(symbol) { %>.<%= symbol.name %> {
-      width: <%= symbol.ratio %>em;
+    <% _.forEach(icons, function(icon) { %>.<%= icon.name %> {
+      width: <%= icon.ratio %>em;
       height: 1em;
-      /*fill: <%= symbol.fill %>;*/
-      /*stroke: <%= symbol.stroke %>;*/
-      fill: initial;
-      stroke: black;
     }
     <% }); %>
   </style>
@@ -83,18 +90,25 @@
 <body>
   <h1>Icons: <span id="count"></span></h1>
 
-  <label style="display: block; width: 300px; margin: 20px auto;">
-    Icon size <output for="size" id="size-value">100</output>
-    <input type="range" id="size" value="100" min="6" max="1000">
-  </label>
+  <div class="configure">
+    <label>
+      <span>Size: <b><output for="size" id="size-value">100</output></b>px</span>
+      <input type="range" id="size" value="100" min="6" max="1000">
+    </label>
+
+    <label>
+      <span>Color:&nbsp;</span>
+      <input type="color" id="color">
+    </label>
+  </div>
 
   <ul class="icons-list">
-    <% _.forEach(symbols, function(symbol) { %>
+    <% _.forEach(icons, function(icon) { %>
     <li class="icon-box">
-      <input class="icon-class-name autoselect" type="text" value=".<%= symbol.name %>" readonly>
+      <input class="icon-class-name autoselect" type="text" value=".<%= icon.name %>" readonly>
       <div class="icon-container">
-        <svg class="icon <%= symbol.name %>">
-          <use xlink:href="/img/sprite.svg#<%= symbol.name %>"></use>
+        <svg class="icon <%= icon.name %>">
+          <use xlink:href="/img/sprite.svg#<%= icon.name %>"></use>
         </svg>
       </div>
     </li>
@@ -103,16 +117,19 @@
 
   <script>
     var change = document.getElementById('size');
+    var color = document.getElementById('color');
     var changeVal = document.getElementById('size-value');
     var count = document.getElementById('count');
     var autoselect = document.getElementsByClassName('autoselect');
     var icons = document.getElementsByClassName('icon');
+
     Array.prototype.forEach.call(autoselect, function(el) {
       el.onclick = function() {
         this.focus();
         this.select();
       };
     });
+
     change.oninput = function() {
       var val = this.value;
       changeVal.value = val;
@@ -120,6 +137,14 @@
         el.style.fontSize = val + 'px';
       });
     }
+
+    color.onchange = function() {
+      var val = this.value;
+      Array.prototype.forEach.call(icons, function(el) {
+        el.style.fill = val;
+      });
+    }
+
     count.innerHTML = icons.length;
   </script>
 </body>

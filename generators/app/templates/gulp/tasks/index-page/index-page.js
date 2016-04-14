@@ -1,9 +1,10 @@
 var gulp        = require('gulp');
 var consolidate = require('gulp-consolidate');
+var rename      = require('gulp-rename');
 var fs          = require('fs');
 var path        = require('path');
 var config      = require('../../config');
-var allowExt    = ['.html', '.jade'];
+var allowExt    = ['.html', '.jade', '.nunj', '.nunjucks', '.swig'];
 
 gulp.task('index-page', function() {
     var fullList = fs.readdirSync(config.src.templates);
@@ -18,9 +19,10 @@ gulp.task('index-page', function() {
     }, []);
 
     return gulp
-        .src(__dirname + '/__index.html')
+        .src(__dirname + '/_index.html')
         .pipe(consolidate('lodash', {
             pages: pages
         }))
-        .pipe(gulp.dest(config.src.root));
+        .pipe(rename({ basename: config.indexPageName }))
+        .pipe(gulp.dest(config.dest.root));
 });

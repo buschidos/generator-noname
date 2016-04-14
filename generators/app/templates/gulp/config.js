@@ -1,7 +1,7 @@
 var util = require('gulp-util');
 
 var production = util.env.production || util.env.prod || false;
-var destPath = 'dist';
+var destPath = 'build';
 
 var config = {
     env       : 'development',
@@ -12,7 +12,7 @@ var config = {
         templates    : 'src/templates',
         templatesData: 'src/templates/data',
         sass         : 'src/sass',
-        // path for sass files that will be generated automatically via some of tasks
+        // path for sass files that will be generated automatically
         sassGen      : 'src/sass/generated',
         js           : 'src/js',
         img          : 'src/img',
@@ -36,6 +36,8 @@ var config = {
         fonts: destPath + '/fonts',
         lib  : destPath + '/lib'
     },
+
+    indexPageName: '_index'
 
     setEnv: function(env) {
         if (typeof env !== 'string') return;
