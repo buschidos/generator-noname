@@ -4,6 +4,7 @@ var svgmin       = require('gulp-svgmin');
 var consolidate  = require('gulp-consolidate');
 var _            = require('lodash');
 var config       = require('../../config');
+var pathToIcons  = config.src.iconsFont + '/**/*.svg';
 // var runTimestamp = Math.round(Date.now() / 1000);
 
 var fontProps = {
@@ -13,7 +14,7 @@ var fontProps = {
 };
 
 gulp.task('iconfont', function() {
-    return gulp.src([config.src.iconsFont + '/*.svg'])
+    return gulp.src(pathToIcons)
         .pipe(svgmin())
         .pipe(iconfont({
             fontName: fontProps.fontName,
@@ -39,5 +40,5 @@ gulp.task('iconfont', function() {
 });
 
 gulp.task('iconfont:watch', function() {
-    gulp.watch(config.src.iconsFont + '/*.svg', ['iconfont']);
+    gulp.watch(pathToIcons, ['iconfont']);
 });

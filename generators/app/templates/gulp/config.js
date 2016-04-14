@@ -37,7 +37,7 @@ var config = {
         lib  : destPath + '/lib'
     },
 
-    indexPageName: '_index'
+    indexPageName: '_index',
 
     setEnv: function(env) {
         if (typeof env !== 'string') return;
