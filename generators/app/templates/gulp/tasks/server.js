@@ -8,10 +8,7 @@ var config = require('../config');
 
 gulp.task('server', function() {
     server.init({
-        server: {
-            baseDir: !config.production ? [config.dest.root, config.src.root] : config.dest.root,
-            directory: false
-        },
+        server: !config.production ? [config.dest.root, config.src.root] : config.dest.root,
         files: [
             config.dest.html + '/*.html',
             config.dest.css + '/*.css',
