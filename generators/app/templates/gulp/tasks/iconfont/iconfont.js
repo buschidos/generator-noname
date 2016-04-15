@@ -1,6 +1,5 @@
 var gulp         = require('gulp');
 var iconfont     = require('gulp-iconfont');
-var svgmin       = require('gulp-svgmin');
 var consolidate  = require('gulp-consolidate');
 var _            = require('lodash');
 var config       = require('../../config');
@@ -15,7 +14,6 @@ var fontProps = {
 
 gulp.task('iconfont', function() {
     return gulp.src(pathToIcons)
-        .pipe(svgmin())
         .pipe(iconfont({
             fontName: fontProps.fontName,
             formats: ['ttf', 'eot', 'woff', 'woff2'],
