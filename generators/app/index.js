@@ -29,7 +29,7 @@ module.exports = yeoman.generators.Base.extend({
     if (this.props.install) {
       this.installDependencies();
     } else {
-      this.log('Run ' + chalk.blue('npm install') + ' to install dependencies later');
+      this.log('\n Run ' + chalk.blue('npm install') + ' to install dependencies later');
     }
   },
 
@@ -37,14 +37,18 @@ module.exports = yeoman.generators.Base.extend({
     if (this.props.sprites.indexOf('svg') > -1) {
       this.log(
         '\n'
-        + chalk.red('DON\'T FORGET')
-        + ' to install '
+        + chalk.red(' DON\'T FORGET')
+        + ' to use '
         + chalk.blue('svg4everybody')
         + ' or ' + chalk.blue('svgxuse')
-        + ' otherwise IE will not show you svg sprite ¯\\_(ツ)_/¯'
+        + '\n otherwise IE will not show you svg sprite'
+        + '\n ¯\\_(ツ)_/¯'
+        + '\n More info:'
+        + '\n > https://github.com/jonathantneal/svg4everybody'
+        + '\n > https://github.com/Keyamoon/svgxuse'
         + '\n'
       );
     }
-    this.log(chalk.green('Done!'));
+    this.log(chalk.green(' Done!'));
   }
 });

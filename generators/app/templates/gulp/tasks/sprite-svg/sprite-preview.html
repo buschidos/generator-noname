@@ -136,14 +136,14 @@
       Array.prototype.forEach.call(icons, function(el) {
         el.style.fontSize = val + 'px';
       });
-    }
+    };
 
     color.onchange = function() {
       var val = this.value;
       Array.prototype.forEach.call(icons, function(el) {
         el.style.fill = val;
       });
-    }
+    };
 
     count.innerHTML = icons.length;
   </script>

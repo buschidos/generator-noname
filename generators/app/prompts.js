@@ -10,7 +10,7 @@ module.exports = [
   {
     type: 'list',
     name: 'templates',
-    message: 'Choose template engine',
+    message: 'Choose your preferred template engine',
     choices: [
       {
         name: 'Nunjucks',
@@ -21,12 +21,12 @@ module.exports = [
         value: 'swig'
       },
       {
-        name: 'Jade',
+        name: 'Pug (Jade)',
         value: 'jade'
       },
       {
-        name: 'No templates, just pure html',
-        value: false
+        name: 'I will write my own task for handling HTML',
+        value: null
       }
     ],
     default: 0
@@ -34,18 +34,22 @@ module.exports = [
   {
     type: 'list',
     name: 'bundler',
-    message: 'Choose js modules bundler',
+    message: 'What we do with JS code?',
     choices: [
       {
-        name: 'Webpack',
+        name: 'Let Webpack does magic to me',
         value: 'webpack'
+      },
+      {
+        name: 'I will handle it manually (with gulp-include)',
+        value: 'include'
       },
       // {
       //   name: 'Browserify',
       //   value: 'browserify'
       // },
       {
-        name: 'Not use modules bundler',
+        name: 'I will write my own task for handling JS',
         value: null
       }
     ]

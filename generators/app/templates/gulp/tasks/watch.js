@@ -10,6 +10,7 @@ gulp.task('watch', [<% if (templates === 'swig') { %>
     'sprite:png:watch',<% } %><% if (svgo) { %>
     'svgo:watch',<% } %><% if (bundler === 'browserify') { %>
     'browserify:watch',<% } %><% if (bundler === 'webpack') { %>
-    'webpack:watch',<% } %>
+    'webpack:watch',<% } %><% if (bundler === 'include') { %>
+    'scripts:watch',<% } %>
     'sass:watch'
 ]);

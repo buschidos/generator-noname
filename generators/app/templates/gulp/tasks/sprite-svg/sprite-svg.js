@@ -44,7 +44,7 @@ gulp.task('sprite:svg:watch', function() {
 function extractDataFromIcons($, file) {
     // get data about each icon
     var symbols = $('svg > symbol');
-    var data = $('svg > symbol').map(function() {
+    var data = symbols.map(function() {
         var $this = $(this);
         var size = $this.attr('viewBox').split(' ').splice(2);
         return {
@@ -56,11 +56,12 @@ function extractDataFromIcons($, file) {
     // remove attributes to make possible applying these styles via css
     symbols.each(function() {
         $(this)
-            .children()
+            .find('*')
             .removeAttr('stroke')
             .removeAttr('stroke-width')
+            .removeAttr('opacity')
             .not('[fill="currentColor"]')
-            .removeAttr('fill')
+            .removeAttr('fill');
     });
 
     // create scss file with icon dimensions

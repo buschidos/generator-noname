@@ -83,17 +83,22 @@ module.exports = function () {
   }
 
   // js bundler task
-  if (props.bundler === 'browserify') {
-    this.copy('gulp/tasks/browserify.js');
-  }
-
-  if (props.bundler === 'webpack') {
-    this.bulkCopy('gulp/tasks/webpack.js', 'gulp/tasks/webpack.js');
-    this.copy('webpack.config.js');
-    this.copy('babelrc', '.babelrc');
+  switch (props.bundler) {
+    case 'browserify':
+      this.copy('gulp/tasks/browserify.js');
+      break;
+    case 'webpack':
+      this.bulkCopy('gulp/tasks/webpack.js', 'gulp/tasks/webpack.js');
+      this.copy('webpack.config.js');
+      this.copy('babelrc', '.babelrc');
+      break;
+    case 'include':
+      this.copy('gulp/tasks/scripts.js', 'gulp/tasks/scripts.js');
+      break;
   }
 
   // copy directories
+  this.bundler = props.bundler; // or in /templates/src/js/**/*.js use options.bundler
   this.directory('src/js', 'src/js');
   this.sprites = props.sprites; // or in /templates/src/sass/app.sass use options.sprites
   this.directory('src/sass', 'src/sass');

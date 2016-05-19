@@ -5,6 +5,9 @@ var gulpif         = require('gulp-if');
 var changed        = require('gulp-changed');
 var prettify       = require('gulp-prettify');
 var frontMatter    = require('gulp-front-matter');
+var data           = require('gulp-data');
+var path           = require('path');
+var fs             = require('fs');
 var config         = require('../config');
 
 function renderHtml(onlyChanged) {
@@ -15,6 +18,11 @@ function renderHtml(onlyChanged) {
         }))
         .pipe(gulpif(onlyChanged, changed(config.dest.html)))
         .pipe(frontMatter({ property: 'data' }))
+        .pipe(data(function(file) {
+            var dataFile = file.data['read_data_from_json'];
+            if (!dataFile) return {};
+            return JSON.parse(fs.readFileSync(path.join(path.dirname(file.path), dataFile), 'utf-8'));
+        }))
         .pipe(nunjucksRender({
             path: config.src.templates,
             data: {
