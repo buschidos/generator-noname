@@ -43,8 +43,8 @@ function isMin(mq) {
 }
 
 function sortMediaQueries(a, b) {
-    A = a.replace(/\D/g, '');
-    B = b.replace(/\D/g, '');
+    var A = a.replace(/\D/g, '');
+    var B = b.replace(/\D/g, '');
 
     if (isMax(a) && isMax(b)) {
         return B - A;

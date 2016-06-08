@@ -25,7 +25,7 @@ gulp.task('iconfont', function() {
             fontWeight: 'normal'
         }))
         .on('glyphs', function(glyphs, options) {
-            props = _.assign(fontProps, { glyphs: glyphs });
+            var props = _.assign(fontProps, { glyphs: glyphs });
             gulp.src(__dirname + '/_iconfont.scss')
                 .pipe(consolidate('lodash', props))
                 .pipe(gulp.dest(config.src.sassGen));

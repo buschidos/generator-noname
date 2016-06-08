@@ -61,7 +61,7 @@
       margin: auto;
     }
 
-    .configure label:first-child input {
+    .configure > label:first-child input {
       display: block;
       width: 100%;
     }
@@ -88,64 +88,82 @@
   </style>
 </head>
 <body>
-  <h1>Icons: <span id="count"></span></h1>
+<h1>Icons: <span id="count"></span></h1>
 
-  <div class="configure">
+<div class="configure">
+  <label>
+    <span>Size: <b><output for="size" id="size-value">100</output></b>px</span>
+    <input type="range" id="size" value="100" min="6" max="1000">
+  </label>
+
+  <div>
     <label>
-      <span>Size: <b><output for="size" id="size-value">100</output></b>px</span>
-      <input type="range" id="size" value="100" min="6" max="1000">
+      <span>Color primary:&nbsp;</span>
+      <input type="color" id="color-primary">
     </label>
-
     <label>
-      <span>Color:&nbsp;</span>
-      <input type="color" id="color">
+      <span>Color secondary:&nbsp;</span>
+      <input type="color" id="color-secondary" value="#CCCCCC">
     </label>
   </div>
+</div>
 
-  <ul class="icons-list">
-    <% _.forEach(icons, function(icon) { %>
-    <li class="icon-box">
-      <input class="icon-class-name autoselect" type="text" value=".<%= icon.name %>" readonly>
-      <div class="icon-container">
-        <svg class="icon <%= icon.name %>">
-          <use xlink:href="/img/sprite.svg#<%= icon.name %>"></use>
-        </svg>
-      </div>
-    </li>
-    <% }) %>
-  </ul>
+<ul class="icons-list">
+  <% _.forEach(icons, function(icon) { %>
+  <li class="icon-box">
+    <input class="icon-class-name autoselect" type="text" value=".<%= icon.name %>" readonly>
+    <div class="icon-container">
+      <svg class="icon <%= icon.name %>">
+        <use xlink:href="/img/sprite.svg#<%= icon.name %>"></use>
+      </svg>
+    </div>
+  </li>
+  <% }) %>
+</ul>
 
-  <script>
-    var change = document.getElementById('size');
-    var color = document.getElementById('color');
-    var changeVal = document.getElementById('size-value');
-    var count = document.getElementById('count');
-    var autoselect = document.getElementsByClassName('autoselect');
-    var icons = document.getElementsByClassName('icon');
+<script>
+  var change = document.getElementById('size');
+  var colorPrimary = document.getElementById('color-primary');
+  var colorSecondary = document.getElementById('color-secondary');
+  var changeVal = document.getElementById('size-value');
+  var count = document.getElementById('count');
+  var autoselect = document.getElementsByClassName('autoselect');
+  var icons = document.getElementsByClassName('icon');
+  var iconsArrow = Array.prototype.slice.call(icons);
 
-    Array.prototype.forEach.call(autoselect, function(el) {
-      el.onclick = function() {
-        this.focus();
-        this.select();
-      };
+  Array.prototype.forEach.call(autoselect, function(el) {
+    el.onclick = function() {
+      this.focus();
+      this.select();
+    };
+  });
+
+  change.oninput = function() {
+    var val = this.value;
+    changeVal.value = val;
+    iconsArrow.forEach(function(el) {
+      el.style.fontSize = val + 'px';
     });
+  };
 
-    change.oninput = function() {
-      var val = this.value;
-      changeVal.value = val;
-      Array.prototype.forEach.call(icons, function(el) {
-        el.style.fontSize = val + 'px';
-      });
-    };
+  colorPrimary.onchange = function() {
+    var val = this.value;
+    iconsArrow.forEach(function(el) {
+      el.style.fill = val;
+    });
+  };
 
-    color.onchange = function() {
-      var val = this.value;
-      Array.prototype.forEach.call(icons, function(el) {
-        el.style.fill = val;
-      });
-    };
+  colorSecondary.onchange = function() {
+    var val = this.value;
+    iconsArrow.forEach(function(el) {
+      el.style.color = val;
+    });
+  };
 
-    count.innerHTML = icons.length;
-  </script>
+  colorPrimary.onchange();
+  colorSecondary.onchange();
+
+  count.innerHTML = icons.length;
+</script>
 </body>
 </html>
